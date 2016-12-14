@@ -7,7 +7,10 @@ LOCAL_MODULE_TAGS := eng optional
 LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
 LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
 LOCAL_CFLAGS :=
-LOCAL_SRC_FILES = pigz.c yarn.c
+ZOPFLI := $(wildcard $(LOCAL_PATH)/zopfli/src/zopfli/*.c)
+ZOPFLI := $(ZOPFLI:$(LOCAL_PATH)/%=%)
+LOCAL_SRC_FILES = pigz.c yarn.c try.c 
+LOCAL_SRC_FILES += $(ZOPFLI)
 LOCAL_C_INCLUDES += $(LOCAL_PATH) \
 					external/zlib
 LOCAL_SHARED_LIBRARIES += libz libc
